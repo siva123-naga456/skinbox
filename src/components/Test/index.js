@@ -2,11 +2,29 @@ import {Component} from 'react'
 import './index.css'
 
 class Test extends Component {
+  state={one:true,
+        two:true,
+        three:true} 
+
+  onePairBorderChange=()=>{
+    this.setState(prevState=>({one:!prevState.one}))
+  }
+  twoPairBorderChange=()=>{
+    this.setState(prevState=>({two:!prevState.two}))
+  }
+  threePairBorderChange=()=>{
+    this.setState(prevState=>({three:!prevState.three}))
+  }
+  
   render() {
+    const {one,two,three}=this.state
+    const Color1=one?"border-color1":"border-color2"
+    const Color2=two?"border-color1":"border-color2"
+    const Color3=three?"border-color1":"border-color2"
     return (
-      <div className="main-container">
+      <div className={`main-container ${Color1}`}>
         <h1 className="heading">Bundle & Save</h1>
-        <div className="one-container">
+        <div className="one-container" onClick={this.onePairBorderChange}>
           <div className="sub1-container">
             <input type="radio" id="one" />
             <div className="sub2-container">
@@ -20,7 +38,7 @@ class Test extends Component {
           </div>
           <p className="dk-pair">50% OFF</p>
         </div>
-        <div className="main1-container">
+        <div className={`main1-container${Color2}`} onClick={this.twoPairBorderChange}>
           <div className="two-container">
             <div className="sub1-container">
               <input type="radio" id="two" />
@@ -79,7 +97,7 @@ class Test extends Component {
             </div>
           </div>
         </div>
-        <div className="one-container">
+        <div className={`one-container${Color3}} onClick={this.threePairBorderChange}>
           <div className="sub1-container">
             <input type="radio" id="one" />
             <div className="sub2-container">
